@@ -48,7 +48,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ec2-user/go-wishlist-aws
-            docker-compose down
+            # docker-compose down
             docker pull aditnugroho/go-wishlist-aws
-            docker run -d --name go-wishlist-aws -p 80:1323 aditnugroho/go-wishlist-aws
-            docker-compose up -d
+            docker run -d -p 80:1323 aditnugroho/go-wishlist-aws:latest
+            # docker-compose up -d
