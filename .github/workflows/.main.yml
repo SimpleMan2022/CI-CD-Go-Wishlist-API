@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: SET UP ENVIRONMENT VARIABLES
+        run: |
+          echo ${{ secrets.ENV_PROJECT }} > .env
       - name: Build Image
         run: docker build -t aditnugroho/go-wishlist-aws:latest .
       - name: Login to DockerHub
@@ -50,5 +53,5 @@ jobs:
             cd /home/ec2-user/go-wishlist-aws
             # docker-compose down
             docker pull aditnugroho/go-wishlist-aws
-            docker run -d -p 80:1323 aditnugroho/go-wishlist-aws:latest
+            docker run -d go-wishlist-aws -p 80:1323 aditnugroho/go-wishlist-aws
             # docker-compose up -d
