@@ -15,10 +15,8 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: "1.20"
-      - name: Set up Environment Variables
-        env:
-          ENV_PROJECT: ${{ secrets.ENV_PROJECT }}
-        run: echo "$ENV_PROJECT" > .env
+      - name: Load .env file
+        run: echo "export $(grep -v '^#' .env | xargs)" >> $GITHUB_ENV
       - name: Run Test
         run: go test -v ./... -cover
 
