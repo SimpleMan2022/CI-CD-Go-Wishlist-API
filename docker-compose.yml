@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  wishlist-api-service:
+    build: .
+    ports:
+      - 1323:1323
+    restart: on-failure
+    networks:
+      - wishlist-api-network
+    depends_on:
+      - mariadb-service
+
+  mariadb-service:
+    image: mariadb:latest
+    environment:
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - /c/Users/Asus/volume-wishlist:/var/lib/mysql
+      - ./mariadb/init.sql:/data/application/init.sql
+    command: --init-file /data/application/init.sql
+    networks:
+      - wishlist-api-network
+
+networks:
+  wishlist-api-network:
+    driver: bridge
