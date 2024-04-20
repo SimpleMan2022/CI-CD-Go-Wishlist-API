@@ -52,6 +52,6 @@ jobs:
           script: |
             cd /home/ec2-user/go-wishlist-aws
             # docker-compose down
-            docker pull aditnugroho/go-wishlist-aws
-            docker run -d go-wishlist-aws -p 80:1323 aditnugroho/go-wishlist-aws
+            docker pull aditnugroho/go-wishlist-aws:latest
+            docker run -d go-wishlist-aws -p 80:1323 aditnugroho/go-wishlist-aws:latest
             # docker-compose up -d
