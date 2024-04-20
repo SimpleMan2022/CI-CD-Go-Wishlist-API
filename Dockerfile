@@ -13,7 +13,7 @@ FROM gcr.io/distroless/base-debian11 AS build-release-stage
 WORKDIR /
 
 COPY --from=build-stage /goapp /goapp
-COPY --from=build-stage /app/.env .
+COPY --from=build-stage ./.env .
 
 EXPOSE 1323
 
