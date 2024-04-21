@@ -51,5 +51,5 @@ jobs:
             docker stop go-wishlist-aws || true && docker rm go-wishlist-aws || true
             docker pull aditnugroho/go-wishlist-aws:latest
             docker run -d --name go-wishlist-aws -p 80:1323 aditnugroho/go-wishlist-aws:latest
-            touch .env && echo ${{ secrets.ENV_PROJECT }} > .env && docker cp .env go-wishlist-aws:/.env
+            touch .env && echo ${{ secrets.ENV_PROJECT }} > .env && docker cp .env go-wishlist-aws:/go-wishlist-aws
             docker restart go-wishlist-aws
