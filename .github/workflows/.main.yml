@@ -48,11 +48,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ec2-user/go-wishlist-aws
-            export DB_USERNAME=${{ secrets.DB_USERNAME }}
-            export DB_URL=${{ secrets.DB_URL }}
-            export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            export DB_NAME=${{ secrets.DB_NAME }}
-            export SECRET_TOKEN=${{ secrets.SECRET_TOKEN }}
             docker stop go-wishlist-aws || true && docker rm go-wishlist-aws || true
             docker pull aditnugroho/go-wishlist-aws:latest
-            docker run -d --name go-wishlist-aws -p 80:1323 -e DB_HOST=$DB_HOST -e DB_USER=$DB_USER -e DB_PASSWORD=$DB_PASSWORD -e DB_NAME=$DB_NAME -e SECRET_TOKEN=$SECRET_TOKEN aditnugroho/go-wishlist-aws:latest
+            docker run -d --name go-wishlist-aws -p 80:1323 aditnugroho/go-wishlist-aws:latest
+            touch .env && echo ${{ secrets.ENV_PROJECT }} > .env && docker cp .env go-wishlist-aws:/go-wishlist-aws
